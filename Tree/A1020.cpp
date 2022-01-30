@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <iostream>
+#include <queue>
 using namespace std;
 #define MAXN 40
 
@@ -46,6 +47,29 @@ void preOrder(node* root) {
 	
 } 
 
+int count = 0;
+void BFS(node* root) {
+	
+	queue<node*> nq;
+	nq.push(root);
+	
+	node* out = new node;
+	while(!nq.empty()) {
+		
+		out = nq.front();
+		nq.pop();
+		count ++;
+		cout << out->data;
+		if (count < N)	cout << " ";	
+		
+		if (out->lchild != NULL)	nq.push(out->lchild);
+		if (out->rchild != NULL)	nq.push(out->rchild);
+		
+	}
+	
+	return ;
+	
+}
 
 int main() {
 	
@@ -57,6 +81,7 @@ int main() {
 	root = createNode(0, N-1, 0, N-1);
 	
 //	preOrder(root);
+	BFS(root);
 	
 	return 0;
 	
